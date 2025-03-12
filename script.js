@@ -7,8 +7,15 @@ const modelSelect = document.querySelector("#model-select");
 const countSelect = document.querySelector("#count-select");
 const ratioSelect = document.querySelector("#ratio-select");
 
-// API_KEY ni olish uchun muhit o'zgaruvchisini ishlatish
-const API_KEY = process.env.API_KEY || "fallback-key";
+let API_KEY = "";
+
+// API_KEY ni olish uchun fetch so'rovini ishlatish
+fetch("/.netlify/functions/getKey")
+  .then((res) => res.json())
+  .then((data) => {
+    API_KEY = data.apiKey;
+    console.log("API_KEY:", API_KEY);
+  });
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
@@ -89,7 +96,7 @@ const generateImages = async (
     try {
       const response = await fetch(apiURL, {
         headers: {
-          Authorization: `Bearer ${API_KEY}`, // API_KEY endi config.js dan olinyapti
+          Authorization: `Bearer ${API_KEY}`, // API_KEY endi fetch orqali olinyapti
           "Content-Type": "application/json",
         },
         method: "POST",
