@@ -7,10 +7,8 @@ const modelSelect = document.querySelector("#model-select");
 const countSelect = document.querySelector("#count-select");
 const ratioSelect = document.querySelector("#ratio-select");
 
+// API_KEY ni olish uchun muhit o'zgaruvchisini ishlatish
 const API_KEY = process.env.API_KEY || "fallback-key";
-
-
-
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
