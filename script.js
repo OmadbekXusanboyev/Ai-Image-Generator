@@ -7,15 +7,20 @@ const modelSelect = document.querySelector("#model-select");
 const countSelect = document.querySelector("#count-select");
 const ratioSelect = document.querySelector("#ratio-select");
 
-let API_KEY = "";
+// Netlify yoki Vercel muhitidan API kalitni olish
+const apiKey = import.meta.env.VITE_API_KEY || process.env.API_KEY;
 
-// API_KEY ni olish uchun fetch so'rovini ishlatish
-fetch("/.netlify/functions/getKey")
-  .then((res) => res.json())
-  .then((data) => {
-    API_KEY = data.apiKey;
-    console.log("API_KEY:", API_KEY);
-  });
+// API kalitni konsolga chiqarish (test uchun)
+console.log("API Key:", apiKey);
+
+// API kalit orqali so‘rov jo‘natish
+fetch(`https://api.example.com/data?api_key=${apiKey}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log("Fetched Data:", data);
+  })
+  .catch(error => console.error("API error:", error));
+
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
