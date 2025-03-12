@@ -7,19 +7,7 @@ const modelSelect = document.querySelector("#model-select");
 const countSelect = document.querySelector("#count-select");
 const ratioSelect = document.querySelector("#ratio-select");
 
-// Netlify yoki Vercel muhitidan API kalitni olish
-const apiKey = import.meta.env.VITE_API_KEY || process.env.API_KEY;
-
-// API kalitni konsolga chiqarish (test uchun)
-console.log("API Key:", apiKey);
-
-// API kalit orqali so‘rov jo‘natish
-fetch(`https://api.example.com/data?api_key=${apiKey}`)
-  .then(response => response.json())
-  .then(data => {
-    console.log("Fetched Data:", data);
-  })
-  .catch(error => console.error("API error:", error));
+const API_KEY = window.API_KEY || "fallback-key";
 
 
 const examplePrompts = [
@@ -101,7 +89,7 @@ const generateImages = async (
     try {
       const response = await fetch(apiURL, {
         headers: {
-          Authorization: `Bearer ${API_KEY}`, // API_KEY endi fetch orqali olinyapti
+          Authorization: `Bearer ${API_KEY}`, // API_KEY endi config.js dan olinyapti
           "Content-Type": "application/json",
         },
         method: "POST",
