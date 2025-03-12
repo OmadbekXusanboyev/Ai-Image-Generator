@@ -8,7 +8,12 @@ const countSelect = document.querySelector("#count-select");
 const ratioSelect = document.querySelector("#ratio-select");
 
 // API_KEY ni to‘g‘ri ishlatish
-const API_KEY = window.API_KEY; // Endi config.js dan oladi
+const API_KEY = window.API_KEY || process.env.API_KEY;
+
+if (!API_KEY) {
+  console.error("❌ API_KEY topilmadi! Netlify yoki Vercel environment variables sozlanganini tekshiring.");
+}
+
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
