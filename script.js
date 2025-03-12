@@ -7,12 +7,9 @@ const modelSelect = document.querySelector("#model-select");
 const countSelect = document.querySelector("#count-select");
 const ratioSelect = document.querySelector("#ratio-select");
 
-// API_KEY ni to‘g‘ri ishlatish
-const API_KEY = window.API_KEY || process.env.API_KEY;
+const API_KEY = process.env.API_KEY || "fallback-key";
 
-if (!API_KEY) {
-  console.error("❌ API_KEY topilmadi! Netlify yoki Vercel environment variables sozlanganini tekshiring.");
-}
+
 
 
 const examplePrompts = [
